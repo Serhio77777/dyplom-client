@@ -38,6 +38,10 @@ import { GetOnePatient } from './services/patients/getOne.service';
 import { DeletePatient } from './services/patients/delete.service';
 import { CreatePatient } from './services/patients/create.service';
 import { EditPatient } from './services/patients/edit.service';
+import { GetOneNote } from './services/note/getOne.service';
+import { DeleteNote } from './services/note/delete.service';
+import { CreateNote } from './services/note/create.service';
+import { EditNote } from './services/note/edit.service';
 import { RegistrationService } from './services/registration/registration.service';
 
 // Interceptors
@@ -128,6 +132,10 @@ import { NoteOneComponent } from './components/patient/note-one/note-one.compone
     DeletePatient,
     CreatePatient,
     EditPatient,
+    GetOneNote,
+    DeleteNote,
+    CreateNote,
+    EditNote,
     RegistrationService,
 
     // Interceptors
@@ -163,6 +171,10 @@ export class AppModule {
     private deletePatient: DeletePatient,
     private createPatient: CreatePatient,
     private editPatient: EditPatient,
+    private getOneNote: GetOneNote,
+    private deleteNote: DeleteNote,
+    private createNote: CreateNote,
+    private editNote: EditNote,
     private registrationService: RegistrationService,
 
     // private paramsService: ParamsService,

@@ -1,0 +1,21 @@
+.patient {
+    margin: 10px;
+    .main-image {
+        height: 250px;
+    }
+    table {
+        width: 100%;
+        td {
+            width: 15%;
+            &:last-child {
+                width: 40%;
+            }
+            button {
+                width: 30%;
+                margin-right: 1.5%;
+                margin-left: 1.5%;
+            }
+        }
+    }
+
+}

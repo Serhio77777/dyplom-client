@@ -1,3 +1,41 @@
-<p>
-  note-create works!
-</p>
+<div class="col-md-8 offset-md-2 note-create">
+    <mat-card>
+      <h1>Create Note Data</h1>
+      <form name="form" [formGroup]="form.formGroup" novalidate>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Diagnosis" type="text" class="form-control" name="noteDiagnosis" formControlName="noteDiagnosis" required />
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('noteDiagnosis').invalid && (form.getControl('noteDiagnosis').dirty || form.getControl('noteDiagnosis').touched)">
+            <div *ngIf="form.getControl('noteDiagnosis').errors.required">Diagnosis is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <textarea matInput placeholder="Description" type="text" class="form-control" name="noteDescription" formControlName="noteDescription" required ></textarea>
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('noteDescription').invalid && (form.getControl('noteDescription').dirty || form.getControl('noteDescription').touched)">
+            <div *ngIf="form.getControl('noteDescription').errors.required">Description is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <mat-select placeholder="noteStatus" formControlName="noteStatus" required>
+              <mat-option>--</mat-option>
+              <mat-option value="New">New</mat-option>
+              <mat-option value="In Progress">In Progress</mat-option>
+              <mat-option value="Done">Done</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('noteStatus').invalid && (form.getControl('noteStatus').dirty || form.getControl('noteStatus').touched)">
+            <div *ngIf="form.getControl('noteStatus').errors.required">This field is reqiured</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button mat-raised-button color="primary" [disabled]="loading" (click)="create()" class="btn btn-primary">Create</button>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  

@@ -30,7 +30,6 @@ export class EditComponent implements OnInit, OnDestroy {
   public setData (data): void {
     this.model = data;
     this.form.patchForm(data.patient);
-    console.log(this.form)
   }
   private invalidForm(): void {
     this.form.validate();

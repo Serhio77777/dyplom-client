@@ -13,6 +13,9 @@ import { CabinetComponent } from './components/cabinet/cabinet.component';
 import { PatientComponent } from './components/patient/patient.component';
 import { EditComponent } from './components/patient/edit/edit.component';
 import { CreateComponent } from './components/patient/create/create.component';
+import { NoteCreateComponent } from './components/patient/note-create/note-create.component';
+import { NoteEditComponent } from './components/patient/note-edit/note-edit.component';
+import { NoteOneComponent } from './components/patient/note-one/note-one.component';
 
 // Guards
 // import { AuthenticationGuard } from './guards/authentication-guard'; -> comming soon
@@ -57,6 +60,18 @@ export const routes: Routes = [
   {
     path: 'create',
     component: CreateComponent
+  },
+  {
+    path: 'note/:id',
+    component: NoteOneComponent
+  },
+  {
+    path: 'edit-note/:id',
+    component: NoteEditComponent
+  },
+  {
+    path: 'create-note',
+    component: NoteCreateComponent
   },
   // {
   //   path: '**',

@@ -1,3 +1,18 @@
-<p>
-  note-one works!
-</p>
+<div class="patient">
+  <mat-card class="patient-card">
+    <mat-card-header>
+      <!-- <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="example-header-image" /> -->
+      <mat-card-title>Diagnosis: {{model.noteDiagnosis}}</mat-card-title>
+      <mat-card-title>Status: {{model.noteStatus}}</mat-card-title>
+      <mat-card-subtitle>Date Of Creation: {{model.noteDateCreation}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card-title>Note</mat-card-title>
+      <mat-card-subtitle>{{model.noteDescription}}</mat-card-subtitle>
+      </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="edit()">Edit</button>
+      <button mat-raised-button color="accent" (click)="delete()">Delete</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
