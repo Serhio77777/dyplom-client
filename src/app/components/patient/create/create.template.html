@@ -1,0 +1,91 @@
+<div class="col-md-8 offset-md-2 create">
+  <mat-card>
+    <h1>Create New Patient</h1>
+    <form name="form" [formGroup]="form.formGroup" novalidate>
+      <div class="form-group">
+        <mat-form-field class="form-field">
+          <input matInput placeholder="First Name" type="text" class="form-control" name="patientFirstName" formControlName="patientFirstName" required />
+        </mat-form-field>
+        <div class="alert alert-danger" *ngIf="form.getControl('patientFirstName').invalid && (form.getControl('patientFirstName').dirty || form.getControl('patientFirstName').touched)">
+          <div *ngIf="form.getControl('patientFirstName').errors.required">First Name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Surname" type="text" class="form-control" name="patientSurName" formControlName="patientSurName" required />
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('patientSurName').invalid && (form.getControl('patientSurName').dirty || form.getControl('patientSurName').touched)">
+            <div *ngIf="form.getControl('patientSurName').errors.required">Surname is required</div>
+          </div>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="form-field">
+          <input matInput placeholder="Last Name" type="text" class="form-control" name="patientLastName" formControlName="patientLastName" required />
+        </mat-form-field>
+        <div class="alert alert-danger" *ngIf="form.getControl('patientLastName').invalid && (form.getControl('patientLastName').dirty || form.getControl('patientLastName').touched)">
+          <div *ngIf="form.getControl('patientLastName').errors.required">Last Name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="form-field">
+          <input matInput [matDatepicker]="picker" formControlName="patientDateBorn" placeholder="Date Of Birht">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div class="alert alert-danger" *ngIf="form.getControl('patientDateBorn').invalid && (form.getControl('patientDateBorn').dirty || form.getControl('patientDateBorn').touched)">
+          <div *ngIf="form.getControl('patientDateBorn').errors.required">Date Of Birht is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="form-field">
+          <input matInput placeholder="Height" type="number" class="form-control" name="patientHeight" formControlName="patientHeight" required />
+        </mat-form-field>
+        <div class="alert alert-danger" *ngIf="form.getControl('patientHeight').invalid && (form.getControl('patientHeight').dirty || form.getControl('patientHeight').touched)">
+          <div *ngIf="form.getControl('patientHeight').errors.required">This field is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="form-field">
+          <input matInput placeholder="Weight" type="number" class="form-control" name="patientWeight" formControlName="patientWeight" required />
+        </mat-form-field>
+        <div class="alert alert-danger" *ngIf="form.getControl('patientWeight').invalid && (form.getControl('patientWeight').dirty || form.getControl('patientWeight').touched)">
+          <div *ngIf="form.getControl('patientWeight').errors.required">This field is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="form-field">
+          <mat-select placeholder="Blood Type" formControlName="patientBloodType" required>
+            <mat-option>--</mat-option>
+            <mat-option value="I (0) Rh «+»">I (0) Rh «+»</mat-option>
+            <mat-option value="I (0) Rh «−»">I (0) Rh «−»</mat-option>
+            <mat-option value="II (A) Rh «+»">II (A) Rh «+»</mat-option>
+            <mat-option value="II (A) Rh «−»">II (A) Rh «−»</mat-option>
+            <mat-option value="III (B) Rh «+»">III (B) Rh «+»</mat-option>
+            <mat-option value="III (B) Rh «−»">III (B) Rh «−»</mat-option>
+            <mat-option value="IV (AB) Rh «+»">IV (AB) Rh «+»</mat-option>
+            <mat-option value="IV (AB) Rh «−»">IV (AB) Rh «−»</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="alert alert-danger" *ngIf="form.getControl('patientBloodType').invalid && (form.getControl('patientBloodType').dirty || form.getControl('patientBloodType').touched)">
+          <div *ngIf="form.getControl('patientBloodType').errors.required">This field is reqiured</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="form-field">
+          <mat-select placeholder="Sex" formControlName="patientSex" required>
+            <mat-option>--</mat-option>
+            <mat-option value="M">M</mat-option>
+            <mat-option value="F">F</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="alert alert-danger" *ngIf="form.getControl('patientSex').invalid && (form.getControl('patientSex').dirty || form.getControl('patientSex').touched)">
+          <div *ngIf="form.getControl('patientSex').errors.required">This field is reqiured</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button mat-raised-button color="primary" [disabled]="loading" (click)="create()" class="btn btn-primary">Create</button>
+        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      </div>
+    </form>
+  </mat-card>
+</div>

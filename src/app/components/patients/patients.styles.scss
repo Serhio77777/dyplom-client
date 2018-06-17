@@ -1,0 +1,32 @@
+.patients {
+    .main-card {
+        margin: 10px;
+    }
+    .table-version {
+        margin: 10px;
+        table {
+            width: 100%;
+            td {
+                width: 20%;
+                &:last-child {
+                    width: 40%;
+                }
+                button {
+                    width: 30%;
+                    margin-right: 1.5%;
+                    margin-left: 1.5%;
+                }
+            }
+        }
+    }
+    .patient-card {
+        margin: 10px;
+        table {
+            width: 100%;
+        }
+        .mat-card-actions {
+          right: 38px;
+          position: absolute;
+        }
+    }
+}

@@ -1,0 +1,106 @@
+<div class="patients">
+  <mat-card class="main-card">
+    <form name="form" [formGroup]="form.formGroup" novalidate>
+      <mat-form-field>
+        <mat-select placeholder="Как же это будет выглядить?" formControlName="dataType">
+          <mat-option value="table">Table</mat-option>
+          <mat-option value="cards">Cards</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="form-group">
+        <mat-form-field class="form-field">
+          <input matInput placeholder="Search" type="text" class="form-control" name="searchValue" formControlName="searchValue" required />
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" (click)="create()">Create New</button>
+    </form>
+  </mat-card>
+  <!-- {{form.getControl('dataType') | json}} -->
+  <div *ngIf="form.getControl('dataType').value === 'table'" class="table-version">
+    <table mat-table [dataSource]="model.tableData" class="mat-elevation-z8">
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let patient"> {{patient.patientIndex}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="patient">
+        <th mat-header-cell *matHeaderCellDef> Пациент </th>
+        <td mat-cell *matCellDef="let patient"> {{patient.patientSurName}} {{patient.patientFirstName}} {{patient.patientLastName}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="dateBorn">
+        <th mat-header-cell *matHeaderCellDef> Дата рождения </th>
+        <td mat-cell *matCellDef="let patient"> {{patient.patientDateBorn}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Действия </th>
+          <td mat-cell *matCellDef="let patient">
+              <button mat-raised-button color="accent" (click)="showMore(patient.patientId)">More</button>
+              <button mat-raised-button color="primary" (click)="edit(patient.patientId)">Edit</button>
+              <button mat-raised-button color="warn" (click)="delete(patient.patientId)">Delete</button>
+          </td>
+        </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="model.rootTableIdexes"></tr>
+      <tr mat-row *matRowDef="let row; columns: model.rootTableIdexes;"></tr>
+    </table>
+    <mat-paginator #table [pageSizeOptions]="[5, 10, 20]" pageSize="10" showFirstLastButtons></mat-paginator>
+  </div>
+  <div *ngIf="form.getControl('dataType').value !== 'table'">
+      <mat-paginator [length]="model.cardData"
+        #card
+        [pageSizeOptions]="[5, 10, 20]"
+        [pageSize]="10"
+        (page)="pageEvent = $event">
+      </mat-paginator>
+      <div *ngFor="let patient of model.cardData; let ind = index">
+        <mat-card class="patient-card" *ngIf="paginatorCard ? paginatorCard.pageIndex ? ind >= paginatorCard.pageSize * (paginatorCard.pageIndex - 1) && ind < paginatorCard.pageSize * paginatorCard.pageIndex : ind >= 0 && ind < paginatorCard.pageSize : null">
+        <mat-card-header>
+          <img mat-card-avatar src="{{patient.patientImage}}" class="example-header-image" />
+          <mat-card-title>{{patient.patientSurName}} {{patient.patientFirstName}} {{patient.patientLastName}}</mat-card-title>
+          <mat-card-subtitle>{{patient.patientDateBorn}}</mat-card-subtitle>
+          <mat-card-actions>
+            <button mat-raised-button color="accent" (click)="showMore(patient.patientId)">More</button>
+            <button mat-raised-button color="primary" (click)="edit(patient.patientId)">Edit</button>
+            <button mat-raised-button color="warn" (click)="delete(patient.patientId)">Delete</button>
+          </mat-card-actions>
+        </mat-card-header>
+        <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+        <mat-card-content *ngIf="patient.notes && patient.notes.length">
+          <mat-card-title>Patient Personal Card</mat-card-title>
+          <table mat-table [dataSource]="patient.notes" class="mat-elevation-z8">
+              <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.noteIndex}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="patient">
+                <th mat-header-cell *matHeaderCellDef> Доктор </th>
+                <td mat-cell *matCellDef="let element"> {{element.practitioner.practitionerFirstName}} {{element.practitioner.practitionerSurName}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="diagnosis">
+                <th mat-header-cell *matHeaderCellDef> Диагноз </th>
+                <td mat-cell *matCellDef="let element"> {{element.noteDiagnosis}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Статус </th>
+                <td mat-cell *matCellDef="let element"> {{element.noteStatus}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> Дата создания записи </th>
+                <td mat-cell *matCellDef="let element"> {{element.noteDateCreation}} </td>
+              </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="model.tableIdexes"></tr>
+              <tr mat-row *matRowDef="let row; columns: model.tableIdexes;"></tr>
+            </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>  
+  

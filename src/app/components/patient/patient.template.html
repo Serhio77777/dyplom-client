@@ -1,0 +1,46 @@
+<div class="patient">
+  <mat-card class="patient-card">
+    <img mat-card-image src="{{model.patient.patientImage}}" alt="Photo of a Shiba Inu">
+    <mat-card-header>
+      <!-- <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="example-header-image" /> -->
+      <mat-card-title>{{model.patient.patientSurName}} {{model.patient.patientFirstName}} {{model.patient.patientLastName}}</mat-card-title>
+      <mat-card-subtitle>{{model.patient.patientDateBorn}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content *ngIf="model.patient && model.patient.notes && model.patient.notes.length">
+      <mat-card-title>Patient Personal Card</mat-card-title>
+      <table mat-table [dataSource]="model.patient.notes" class="mat-elevation-z8">
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.noteIndex}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="model.patient">
+            <th mat-header-cell *matHeaderCellDef> Доктор </th>
+            <td mat-cell *matCellDef="let element"> {{element.practitioner.practitionerFirstName}} {{element.practitioner.practitionerSurName}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="diagnosis">
+            <th mat-header-cell *matHeaderCellDef> Диагноз </th>
+            <td mat-cell *matCellDef="let element"> {{element.noteDiagnosis}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Статус </th>
+            <td mat-cell *matCellDef="let element"> {{element.noteStatus}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Дата создания записи </th>
+            <td mat-cell *matCellDef="let element"> {{element.noteDateCreation}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="model.tableIdexes"></tr>
+          <tr mat-row *matRowDef="let row; columns: model.tableIdexes;"></tr>
+        </table>
+</mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="edit()">Edit</button>
+        <button mat-raised-button color="accent" (click)="delete()">Delete</button>
+      </mat-card-actions>
+  </mat-card>
+</div>
