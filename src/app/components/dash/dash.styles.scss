@@ -1,0 +1,77 @@
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+.dash {
+  mat-list-item {
+    align-items: flex-start;
+    display: flex;
+  }
+  h1 {
+    text-align: center;
+  }
+  form {
+      margin: 20px 10px;
+      .form-group {
+          .form-field {
+              width: 100%;
+          }
+      }
+  }
+
+  .card-0 {
+    mat-card {
+      background-image: url('https://historytime.ru/wp-content/uploads/2016/11/%D1%85%D0%B0%D1%83%D1%81-770x578.jpg');
+      background-size: cover;
+      mat-card-content {
+        background: linear-gradient(rgba(0, 0, 0, 0.61), rgba(0, 0, 0, 0.83), black);
+      }
+    }
+  }
+
+  .card-1 {
+    mat-card {
+      background-image: url('https://24smi.org/public/media/resize/660x-/person/2017/12/04/j3usnkuijio6-doktor-khaus.jpg');
+      background-size: cover;
+      mat-card-content {
+        background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.5), black);
+      }
+    }
+  }
+
+  .card-2 {
+    mat-card {
+      background-image: url('http://nesneg.com/wp-content/uploads/2008/09/house5.jpg');
+      background-size: cover;
+      mat-card-content {
+        background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.5), black);
+      }
+    }
+  }
+  .card-3 {
+    mat-card {
+      background-image: url('http://megasoft-nnov.3dn.ru/posters/screen/house/2.jpg');
+      background-size: cover;
+      mat-card-content {
+        background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.5), black);
+      }
+    }
+  }
+}

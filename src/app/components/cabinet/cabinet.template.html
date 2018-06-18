@@ -96,15 +96,6 @@
             <div *ngIf="form.getControl('password').hasError('minlength')" class="help-block">Password must has more than 8 characters</div>
           </div>
         </div>
-        <!-- <div class="form-group">
-          <mat-form-field class="form-field">
-            <input matInput placeholder="Confirm" type="passwordConfirm" class="form-control" name="passwordConfirm" formControlName="passwordConfirm" required />
-          </mat-form-field>
-          <div class="alert alert-danger" *ngIf="form.getControl('passwordConfirm').invalid && (form.getControl('passwordConfirm').dirty || form.getControl('passwordConfirm').touched)">
-            <div *ngIf="form.getControl('passwordConfirm').errors.required" class="help-block">Password is required</div>
-            <div *ngIf="form.getControl('passwordConfirm').hasError('minlength')" class="help-block">Password must has more than 8 characters</div>
-          </div>
-      </div> -->
     </form>
     <div class="form-group">
           <button mat-raised-button color="primary" [disabled]="loading" (click)="change()" class="btn btn-primary">Change Password</button>

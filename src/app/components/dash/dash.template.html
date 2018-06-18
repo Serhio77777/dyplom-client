@@ -1,0 +1,140 @@
+<div class="grid-container dash">
+    <mat-card class="main-card">
+    <div>
+        <h1>Create more tabs</h1>
+        <form name="form" [formGroup]="form.formGroup" novalidate>
+        <div class="form-group">
+            <mat-form-field class="form-field">
+            <input matInput placeholder="Title" type="text" class="form-control" name="title" formControlName="title" required />
+            </mat-form-field>
+            <!-- <div class="alert alert-danger" *ngIf="form.getControl('title').invalid && (form.getControl('title').dirty || form.getControl('title').touched)">
+            <div *ngIf="form.getControl('title').errors.required">Title is required</div>
+            </div> -->
+        </div>
+        <div class="form-group">
+            <mat-form-field class="form-field">
+                <textarea matInput placeholder="Content" type="text" class="form-control" name="content" formControlName="content" required ></textarea>
+            </mat-form-field>
+            <!-- <div class="alert alert-danger" *ngIf="form.getControl('content').invalid && (form.getControl('content').dirty || form.getControl('content').touched)">
+                <div *ngIf="form.getControl('content').errors.required">Content is required</div>
+            </div> -->
+        </div>
+        <div class="form-group">
+            <mat-form-field class="form-field">
+            <mat-select placeholder="Rows" formControlName="rows" required>
+                <mat-option>--</mat-option>
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+            </mat-select>
+            </mat-form-field>
+            <div class="alert alert-danger" *ngIf="form.getControl('rows').invalid && (form.getControl('rows').dirty || form.getControl('rows').touched)">
+            <div *ngIf="form.getControl('rows').errors.required">This field is reqiured</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="form-field">
+            <mat-select placeholder="Cols" formControlName="cols" required>
+                <mat-option>--</mat-option>
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+            </mat-select>
+            </mat-form-field>
+            <div class="alert alert-danger" *ngIf="form.getControl('cols').invalid && (form.getControl('cols').dirty || form.getControl('cols').touched)">
+            <div *ngIf="form.getControl('cols').errors.required">This field is reqiured</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button mat-raised-button color="primary" [disabled]="loading" (click)="add()" class="btn btn-primary">Add</button>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+        </form>
+    </div>
+</mat-card>
+  <mat-grid-list cols="2" rowHeight="450px">
+    <mat-grid-tile *ngFor="let card of model.cards; let ind = index" [colspan]="card.cols" [rowspan]="card.rows">
+      <div class="card-{{ind}}">
+          <mat-card class="dashboard-card">
+              <mat-card-header>
+                <mat-card-title>
+                  {{card.title}}
+                  <button *ngIf="ind !== 0" mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                    <mat-icon>More</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu" xPosition="before">
+                    <button mat-menu-item (click)="remove(ind)">Remove</button>
+                  </mat-menu>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="dashboard-card-content">
+                <div *ngIf="ind === 0">
+                  <div>
+                      КОМУНАЛЬНОЕ УЧРЕЖДЕНИЕ ОХРАНЫ ЗДОРОВЬЯ
+                  </div>
+                  <div>
+                      Харьковская городская детская 
+                      клиническая больница № 24
+                    </div>
+                    <div>
+                        <mat-list>
+                          <h3 mat-subheader>Отделения</h3>
+                          <mat-divider></mat-divider>
+                          <mat-list-item *ngFor="let phone of model.phones">
+                            <i mat-list-icon class="material-icons">settings_phone</i>
+                            <h4 mat-line>{{phone.name}}  Тел:  {{phone.phone}}</h4>
+                            <!-- <p mat-line> {{phone.phone}} </p> -->
+                          </mat-list-item>
+                          <mat-divider></mat-divider>
+                        </mat-list>
+                    </div>
+                </div>
+                <div *ngIf="ind === 1">
+                    <mat-divider></mat-divider>
+                    <div>
+                        Donec et massa neque. Integer finibus pellentesque erat, vitae cursus metus. Phasellus ipsum libero, facilisis eget tincidunt a, eleifend et ligula. Curabitur aliquet gravida arcu, eget vestibulum massa sollicitudin eu. Aliquam ornare arcu odio, non ullamcorper nulla facilisis ut. Donec varius at magna ut varius. Vivamus vitae magna maximus, sollicitudin odio quis, aliquet diam. Vivamus scelerisque nulla vel malesuada vehicula. Maecenas vitae orci massa. Vivamus mattis mollis enim.
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div>
+                        Donec et massa neque. Integer finibus pellentesque erat, vitae cursus metus. Phasellus ipsum libero, facilisis eget tincidunt a, eleifend et ligula. 
+                    </div>
+                  </div>
+                  <div *ngIf="ind === 2">
+                      <mat-divider></mat-divider>
+                      <div>
+                          Donec et massa neque. Integer finibus pellentesque erat, vitae cursus metus. Phasellus ipsum libero, facilisis eget tincidunt a, eleifend et ligula. Curabitur aliquet gravida arcu, eget vestibulum massa sollicitudin eu. Aliquam ornare arcu odio, non ullamcorper nulla facilisis ut. Donec varius at magna ut varius. Vivamus vitae magna maximus, sollicitudin odio quis, aliquet diam. Vivamus scelerisque nulla vel malesuada vehicula. Maecenas vitae orci massa. Vivamus mattis mollis enim.
+                      </div>
+                      <mat-divider></mat-divider>
+                      <div>
+                          Donec et massa neque. Integer finibus pellentesque erat, vitae cursus metus. Phasellus ipsum libero, facilisis eget tincidunt a, eleifend et ligula. Curabitur aliquet gravida arcu, eget vestibulum massa sollicitudin eu. Aliquam ornare arcu odio, non ullamcorper nulla facilisis ut. Donec varius at magna ut varius. Vivamus vitae magna maximus, sollicitudin odio quis, aliquet diam. Vivamus scelerisque nulla vel malesuada vehicula. Maecenas vitae orci massa. Vivamus mattis mollis enim.
+                      </div>
+                      <mat-divider></mat-divider>
+                      <div>
+                          Donec et massa neque. Integer finibus pellentesque erat, vitae cursus metus. Phasellus ipsum libero, facilisis eget tincidunt a, eleifend et ligula. Curabitur aliquet gravida arcu, eget vestibulum massa sollicitudin eu. Aliquam ornare arcu odio, non ullamcorper nulla facilisis ut. Donec varius at magna ut varius. Vivamus vitae magna maximus, sollicitudin odio quis, aliquet diam. Vivamus scelerisque nulla vel malesuada vehicula. Maecenas vitae orci massa. Vivamus mattis mollis enim.
+                      </div>
+                      <mat-divider></mat-divider>
+                      <div>
+                          Donec et massa neque. Integer finibus pellentesque erat, vitae cursus metus. Phasellus ipsum libero, facilisis eget tincidunt a, eleifend et ligula. Curabitur aliquet gravida arcu, eget vestibulum massa sollicitudin eu. Aliquam ornare arcu odio, non ullamcorper nulla facilisis ut. Donec varius at magna ut varius. Vivamus vitae magna maximus, sollicitudin odio quis, aliquet diam. Vivamus scelerisque nulla vel malesuada vehicula. Maecenas vitae orci massa. Vivamus mattis mollis enim.
+                      </div>
+                    </div>
+                    <div *ngIf="ind === 3">
+                        <mat-divider></mat-divider>
+                        <div>
+                            Donec et massa neque. Integer finibus pellentesque erat, vitae cursus metus. Phasellus ipsum libero, facilisis eget tincidunt a, eleifend et ligula. Curabitur aliquet gravida arcu, eget vestibulum massa sollicitudin eu. Aliquam ornare arcu odio, non ullamcorper nulla facilisis ut. Donec varius at magna ut varius. Vivamus vitae magna maximus, sollicitudin odio quis, aliquet diam. Vivamus scelerisque nulla vel malesuada vehicula. Maecenas vitae orci massa. Vivamus mattis mollis enim.
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div>
+                            Donec et massa neque. Integer finibus pellentesque erat, vitae cursus metus. Phasellus ipsum libero, facilisis eget tincidunt a, eleifend et ligula. 
+                        </div>
+                    </div>
+                    <div *ngIf="ind > 3">
+                        <mat-divider></mat-divider>
+                        <div>
+                            {{card.content}}
+                        </div>
+                        <mat-divider></mat-divider>
+                    </div>
+                    </mat-card-content>
+            </mat-card>
+            </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
