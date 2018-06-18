@@ -1,0 +1,89 @@
+<mat-dialog-content class="container">
+  <div *ngIf="data.eventName === 'requested.data.schedule.editBuzy'">
+      <div class="title">
+          <h1>Edit Day</h1>
+        </div>
+        <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Personal data
+                </mat-panel-title>
+                <mat-panel-description>
+                  Select date
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+          
+              <div class="form-group">
+                <mat-form-field class="form-field">
+                  <input matInput [matDatepicker]="pickersecone" [(ngModel)]="dateToSend" placeholder="Date">
+                  <mat-datepicker-toggle matSuffix [for]="pickersecone"></mat-datepicker-toggle>
+                  <mat-datepicker #pickersecone></mat-datepicker>
+                </mat-form-field>
+              </div>
+                  
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Type time buzy
+                </mat-panel-title>
+                <mat-panel-description>
+                  Type time
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="form-group">
+                <mat-form-field class="form-field">
+                  <input matInput placeholder="Time" [(ngModel)]="timeToSend">
+                </mat-form-field>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        <div class="navigation">
+          <button
+            mat-raised-button
+            class="pay-now"
+            (click)="editBuzy()"
+            name="button"
+            matDialogClose>
+              Close
+          </button>
+        </div>
+        </div>
+      <div *ngIf="data.eventName === 'requested.data.schedule.edit'">
+        <div class="title">
+            <h1>Edit Day Schedule</h1>
+          </div>
+          <div class="form-group">
+            <mat-form-field class="form-field">
+              <input matInput placeholder="Time" [(ngModel)]="timeToSendSchedule">
+            </mat-form-field>
+          </div>
+          <div class="navigation">
+            <button
+              mat-raised-button
+              class="pay-now"
+              name="button"
+              (click)="edit()"
+              matDialogClose>
+                Close
+            </button>
+          </div>
+        </div>
+        <div *ngIf="!data.eventName">
+      <div class="title">
+          <h1>Success</h1>
+        </div>
+        <div class="navigation">
+          <button
+            mat-raised-button
+            class="pay-now"
+            name="button"
+            (click)="edit()"
+            matDialogClose>
+              Close
+          </button>
+        </div>
+        </div>
+</mat-dialog-content>

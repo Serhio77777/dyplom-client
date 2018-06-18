@@ -25,6 +25,14 @@ export class EventsService {
         delete: 'requested.data.note.delete',
         create: 'requested.data.note.create',
         edit: 'requested.data.note.edit'
+      },
+      schedule: {
+        one: 'requested.data.schedule.one',
+        buzy: 'requested.data.schedule.buzy',
+        delete: 'requested.data.schedule.delete',
+        create: 'requested.data.schedule.create',
+        edit: 'requested.data.schedule.edit',
+        editBuzy: 'requested.data.schedule.editBuzy',
       }
     }
   };
@@ -54,6 +62,27 @@ export class EventsService {
         success: 'received.patients.edit.success',
       },
       failure: 'received.patients.failure'
+    },
+    schedule: {
+      one: {
+        success: 'received.schedule.one.success',
+      },
+      buzy: {
+        success: 'received.schedule.buzy.success',
+      },
+      delete: {
+        success: 'received.schedule.delete.success',
+      },
+      create: {
+        success: 'received.schedule.create.success',
+      },
+      edit: {
+        success: 'received.schedule.edit.success',
+      },
+      editBuzy: {
+        success: 'received.schedule.editBuzy.success',
+      },
+      failure: 'received.schedule.failure'
     },
     note: {
       one: {

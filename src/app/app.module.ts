@@ -24,6 +24,7 @@ import {
   MatNativeDateModule,
   MatTreeModule,
   MatPaginatorModule,
+  MatExpansionModule,
   MatProgressBarModule, MatGridListModule } from '@angular/material';
 
 // Routing
@@ -46,6 +47,12 @@ import { DeleteNote } from './services/note/delete.service';
 import { CreateNote } from './services/note/create.service';
 import { EditNote } from './services/note/edit.service';
 import { ProfileUpdateService } from './services/registration/profileUpdate.service';
+import { GetOneSchedule } from './services/schedule/getOne.service';
+import { GetAllBuzy } from './services/schedule/getAll.service';
+import { CreateBuzy } from './services/schedule/create.service';
+import { DeleteBuzy } from './services/schedule/delete.service';
+import { EditBuzy } from './services/schedule/editBuzy.service';
+import { EditSchedule } from './services/schedule/edit.service';
 import { RegistrationService } from './services/registration/registration.service';
 
 // Interceptors
@@ -74,6 +81,8 @@ import { NoteEditComponent } from './components/patient/note-edit/note-edit.comp
 import { NoteOneComponent } from './components/patient/note-one/note-one.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DashComponent } from './components/dash/dash.component';
+import { ModalComponent } from './components/popups/modal/modal.component';
+import { ErrorComponent } from './components/popups/error/error.component';
 // import { ModalComponent } from './components/popups/modal/modal.component';
 // import { ErrorComponent } from './components/popups/error/error.component';
 
@@ -98,6 +107,8 @@ import { DashComponent } from './components/dash/dash.component';
     NoteEditComponent,
     NoteOneComponent,
     HeaderComponent,
+    ModalComponent,
+    ErrorComponent,
     DashComponent
   ],
   imports: [
@@ -127,6 +138,7 @@ import { DashComponent } from './components/dash/dash.component';
     MatTreeModule,
     MatPaginatorModule,
     MatProgressBarModule,
+    MatExpansionModule,
     RoutingConfig,
     MatGridListModule,
   ],
@@ -149,6 +161,12 @@ import { DashComponent } from './components/dash/dash.component';
     CreateNote,
     EditNote,
     ProfileUpdateService,
+    GetOneSchedule,
+    GetAllBuzy,
+    CreateBuzy,
+    DeleteBuzy,
+    EditSchedule,
+    EditBuzy,
     RegistrationService,
 
     // Interceptors
@@ -169,7 +187,7 @@ import { DashComponent } from './components/dash/dash.component';
     }
   ],
   bootstrap: [AppComponent],
-  // entryComponents: [ErrorComponent, ModalComponent]
+  entryComponents: [ErrorComponent, ModalComponent]
 })
 export class AppModule {
   constructor (
@@ -189,6 +207,12 @@ export class AppModule {
     private createNote: CreateNote,
     private editNote: EditNote,
     private profileUpdateService: ProfileUpdateService,
+    private getOneSchedule: GetOneSchedule,
+    private getAllBuzy: GetAllBuzy,
+    private createBuzy: CreateBuzy,
+    private deleteBuzy: DeleteBuzy,
+    private editSchedule: EditSchedule,
+    private editBuzy: EditBuzy,
     private registrationService: RegistrationService,
 
     // private paramsService: ParamsService,

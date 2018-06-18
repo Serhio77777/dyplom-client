@@ -6,27 +6,103 @@
       <td mat-cell *matCellDef="let element"> {{element.position}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="patient">
-      <th mat-header-cell *matHeaderCellDef> Пациент </th>
-      <td mat-cell *matCellDef="let element"> {{element.patient}} </td>
+    <ng-container matColumnDef="day">
+      <th mat-header-cell *matHeaderCellDef> День </th>
+      <td mat-cell *matCellDef="let element"> {{element.day}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="diagnosis">
-      <th mat-header-cell *matHeaderCellDef> Диагноз </th>
-      <td mat-cell *matCellDef="let element"> {{element.diagnosis}} </td>
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef> Время </th>
+      <td mat-cell *matCellDef="let element"> {{element.time}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef> Статус </th>
-      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef> Дата последнего осмотра </th>
-      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Действия </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" (click)="edit(element.position)">Edit</button>
+      </td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="model.tableIdexes"></tr>
     <tr mat-row *matRowDef="let row; columns: model.tableIdexes;"></tr>
   </table>
+  <mat-card class="main-card">
+      <div class="form-group">
+      <mat-form-field class="form-field">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="model.date" (ngModelChange)="onChange()" placeholder="Select Date To Show All">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Personal data
+            </mat-panel-title>
+            <mat-panel-description>
+              Select date
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+      
+          <div class="form-group">
+            <mat-form-field class="form-field">
+              <input matInput [matDatepicker]="pickersec" [(ngModel)]="model.dateNew" placeholder="Date">
+              <mat-datepicker-toggle matSuffix [for]="pickersec"></mat-datepicker-toggle>
+              <mat-datepicker #pickersec></mat-datepicker>
+            </mat-form-field>
+          </div>
+              
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Type time buzy
+            </mat-panel-title>
+            <mat-panel-description>
+              Type time
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="form-group">
+            <mat-form-field class="form-field">
+              <input matInput placeholder="Time" [(ngModel)]="model.timeNew">
+            </mat-form-field>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div class="form-group">
+        <button mat-raised-button color="primary" [disabled]="loading" (click)="create()" class="btn btn-primary main">Create</button>
+      </div>
+  </mat-card>
+
+    <mat-paginator #table [pageSizeOptions]="[5, 10, 20]" pageSize="10" showFirstLastButtons></mat-paginator>
+    <table mat-table [dataSource]="model.buzyTableData" class="mat-elevation-z8 second">
+
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.index}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="day">
+        <th mat-header-cell *matHeaderCellDef> Пациент </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="time">
+        <th mat-header-cell *matHeaderCellDef> Диагноз </th>
+        <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Статус </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" (click)="editBuzy(element)">Edit</button>
+            <button mat-raised-button color="warn" (click)="deleteBuzy(element)">Delete</button>
+          </td>
+        </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="model.tableIdexes"></tr>
+      <tr mat-row *matRowDef="let row; columns: model.buzyTableIdexes;"></tr>
+    </table>
 </div>  
