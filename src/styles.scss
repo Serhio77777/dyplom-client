@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import '~bootstrap/dist/css/bootstrap.css';
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+// @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import '~@angular/material/theming';
 // @import "./styles/globals";
 // @import "~font-awesome/css/font-awesome.min.css";
 @import "~primeng/resources/themes/omega/theme.css";
@@ -30,3 +31,20 @@ $media-expressions: (
 body {
   background-color: #00796B;
 }
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+$ip-primary: mat-palette($mat-indigo);
+$ip-accent: mat-palette($mat-red, 600, 700, 900);
+$ip-theme: mat-light-theme($ip-primary, $ip-accent);
+$ip-theme-dark: mat-dark-theme($ip-primary, $ip-accent);
+
+// .indigo-pink {
+//   @include angular-material-theme($ip-theme);
+// }
+
+// .indigo-pink-dark {
+//   @include angular-material-theme($ip-theme-dark);
+// }
+@include angular-material-theme($ip-theme-dark);

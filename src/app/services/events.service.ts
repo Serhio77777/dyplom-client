@@ -12,6 +12,7 @@ export class EventsService {
     data: {
       authentication: 'requested.data.authentication',
       registration: 'requested.data.registration',
+      profileUpdate: 'requested.data.profileUpdate',
       patients: {
         all: 'requested.data.patients.all',
         one: 'requested.data.patients.one',
@@ -31,6 +32,10 @@ export class EventsService {
     registration: {
       success: 'received.registration.success',
       failure: 'received.registration.failure'
+    },
+    profileUpdate: {
+      success: 'received.profileUpdate.success',
+      failure: 'received.profileUpdate.failure'
     },
     patients: {
       all: {

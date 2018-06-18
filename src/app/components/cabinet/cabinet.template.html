@@ -1,0 +1,115 @@
+<div class="profile">
+  <mat-card class="main-card">
+    <div class="buttons">
+      <button mat-raised-button color="primary" (click)="setTab('about')">About</button>
+      <button mat-raised-button color="primary" (click)="setTab('edit')">Edit</button>
+      <button mat-raised-button color="primary" (click)="setTab('password')">Change Password</button>
+    </div>
+    <div *ngIf="tab === 'about'">
+      <div class="profile-image">
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      </div>
+      <mat-card-content>
+        <div><label for="">Full Name: </label>{{' '}}{{model.personData.practitionerSurName}} {{model.personData.practitionerFirstName}} {{model.personData.practitionerLastName}}</div>
+        <div><label for="">Date Born: </label>{{' '}}{{model.personData.practitionerDateBirth}}</div>
+        <div><label for="">Email: </label>{{' '}}{{model.personData.practitionerEmail}}</div>
+      </mat-card-content>
+    </div>
+    <div *ngIf="tab === 'edit'">
+      <div class="profile-image">
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      </div>
+      <h1>Edit Practitioner Data</h1>
+      <form name="form" [formGroup]="form.formGroup" novalidate>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="First Name" type="text" class="form-control" name="practitionerFirstName" formControlName="practitionerFirstName" required />
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('practitionerFirstName').invalid && (form.getControl('practitionerFirstName').dirty || form.getControl('practitionerFirstName').touched)">
+            <div *ngIf="form.getControl('practitionerFirstName').errors.required">First Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="form-field">
+              <input matInput placeholder="Surname" type="text" class="form-control" name="practitionerSurName" formControlName="practitionerSurName" required />
+            </mat-form-field>
+            <div class="alert alert-danger" *ngIf="form.getControl('practitionerSurName').invalid && (form.getControl('practitionerSurName').dirty || form.getControl('practitionerSurName').touched)">
+              <div *ngIf="form.getControl('practitionerSurName').errors.required">Surname is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Last Name" type="text" class="form-control" name="practitionerLastName" formControlName="practitionerLastName" required />
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('practitionerLastName').invalid && (form.getControl('practitionerLastName').dirty || form.getControl('practitionerLastName').touched)">
+            <div *ngIf="form.getControl('practitionerLastName').errors.required">Last Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <input matInput [matDatepicker]="picker" formControlName="practitionerDateBirth" placeholder="Date Of Birht">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('practitionerDateBirth').invalid && (form.getControl('practitionerDateBirth').dirty || form.getControl('practitionerDateBirth').touched)">
+            <div *ngIf="form.getControl('practitionerDateBirth').errors.required">Date Of Birht is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <mat-select placeholder="Sex" formControlName="practitionerSex" required>
+              <mat-option>--</mat-option>
+              <mat-option value="M">M</mat-option>
+              <mat-option value="F">F</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('practitionerSex').invalid && (form.getControl('practitionerSex').dirty || form.getControl('practitionerSex').touched)">
+            <div *ngIf="form.getControl('practitionerSex').errors.required">This field is reqiured</div>
+          </div>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="form-field">
+              <mat-select placeholder="Position" formControlName="practitionerPosition" required>
+                <mat-option>--</mat-option>
+                <mat-option value="Admin">Main</mat-option>
+                <mat-option value="MD">MD</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="alert alert-danger" *ngIf="form.getControl('practitionerPosition').invalid && (form.getControl('practitionerSex').dirty || form.getControl('practitionerSex').touched)">
+              <div *ngIf="form.getControl('practitionerPosition').errors.required">This field is reqiured</div>
+            </div>
+        </div>
+        <div class="form-group">
+          <button mat-raised-button color="primary" [disabled]="loading" (click)="save()" class="btn btn-primary">Save</button>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+      </form>
+    </div>
+    <div *ngIf="tab === 'password'">
+      <form name="form" [formGroup]="form.formGroup" novalidate>
+        <div class="form-group">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Password" type="password" class="form-control" name="password" formControlName="password" required />
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('password').invalid && (form.getControl('password').dirty || form.getControl('password').touched)">
+            <div *ngIf="form.getControl('password').errors.required" class="help-block">Password is required</div>
+            <div *ngIf="form.getControl('password').hasError('minlength')" class="help-block">Password must has more than 8 characters</div>
+          </div>
+        </div>
+        <!-- <div class="form-group">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Confirm" type="passwordConfirm" class="form-control" name="passwordConfirm" formControlName="passwordConfirm" required />
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="form.getControl('passwordConfirm').invalid && (form.getControl('passwordConfirm').dirty || form.getControl('passwordConfirm').touched)">
+            <div *ngIf="form.getControl('passwordConfirm').errors.required" class="help-block">Password is required</div>
+            <div *ngIf="form.getControl('passwordConfirm').hasError('minlength')" class="help-block">Password must has more than 8 characters</div>
+          </div>
+      </div> -->
+    </form>
+    <div class="form-group">
+          <button mat-raised-button color="primary" [disabled]="loading" (click)="change()" class="btn btn-primary">Change Password</button>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+    </div>
+  </mat-card>
+</div>

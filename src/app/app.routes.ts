@@ -11,6 +11,9 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { BookingComponent } from './components/booking/booking.component';
 import { CabinetComponent } from './components/cabinet/cabinet.component';
 import { PatientComponent } from './components/patient/patient.component';
+import { PatientsComponent } from './components/patients/patients.component';
+import { ScheduleComponent } from './components/schedule/schedule.component';
+import { DashComponent } from './components/dash/dash.component';
 import { EditComponent } from './components/patient/edit/edit.component';
 import { CreateComponent } from './components/patient/create/create.component';
 import { NoteCreateComponent } from './components/patient/note-create/note-create.component';
@@ -46,7 +49,19 @@ export const routes: Routes = [
     component: BookingComponent
   },
   {
-    path: 'cabinet',
+    path: 'dash',
+    component: DashComponent
+  },
+  {
+    path: 'schedule',
+    component: ScheduleComponent
+  },
+  {
+    path: 'patient',
+    component: PatientsComponent
+  },
+  {
+    path: 'profile',
     component: CabinetComponent
   },
   {

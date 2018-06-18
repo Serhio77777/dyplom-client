@@ -18,10 +18,11 @@ import {
   MatTableModule,
   MatSliderModule,
   MatTabsModule,
+  MatToolbarModule,
   MatDatepickerModule,
   MatNativeDateModule,
   MatPaginatorModule,
-  MatProgressBarModule } from '@angular/material';
+  MatProgressBarModule, MatGridListModule } from '@angular/material';
 
 // Routing
 import { RoutingConfig } from './app.routes';
@@ -42,6 +43,7 @@ import { GetOneNote } from './services/note/getOne.service';
 import { DeleteNote } from './services/note/delete.service';
 import { CreateNote } from './services/note/create.service';
 import { EditNote } from './services/note/edit.service';
+import { ProfileUpdateService } from './services/registration/profileUpdate.service';
 import { RegistrationService } from './services/registration/registration.service';
 
 // Interceptors
@@ -60,14 +62,16 @@ import { BookingComponent } from './components/booking/booking.component';
 import { CabinetComponent } from './components/cabinet/cabinet.component';
 import { CreateHospitalComponent } from './components/create-hospital/create-hospital.component';
 import { DepartmentComponent } from './components/department/department.component';
-import { ScheduleComponent } from './components/schedule/schedule.component';
 import { PatientsComponent } from './components/patients/patients.component';
+import { ScheduleComponent } from './components/schedule/schedule.component';
 import { PatientComponent } from './components/patient/patient.component';
 import { EditComponent } from './components/patient/edit/edit.component';
 import { CreateComponent } from './components/patient/create/create.component';
 import { NoteCreateComponent } from './components/patient/note-create/note-create.component';
 import { NoteEditComponent } from './components/patient/note-edit/note-edit.component';
 import { NoteOneComponent } from './components/patient/note-one/note-one.component';
+import { HeaderComponent } from './components/header/header.component';
+import { DashComponent } from './components/dash/dash.component';
 // import { ModalComponent } from './components/popups/modal/modal.component';
 // import { ErrorComponent } from './components/popups/error/error.component';
 
@@ -90,7 +94,9 @@ import { NoteOneComponent } from './components/patient/note-one/note-one.compone
     CreateComponent,
     NoteCreateComponent,
     NoteEditComponent,
-    NoteOneComponent
+    NoteOneComponent,
+    HeaderComponent,
+    DashComponent
   ],
   imports: [
     BrowserModule,
@@ -111,12 +117,14 @@ import { NoteOneComponent } from './components/patient/note-one/note-one.compone
     MatIconModule,
     MatTableModule,
     MatTabsModule,
+    MatToolbarModule,
     MatSliderModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
     RoutingConfig,
+    MatGridListModule,
   ],
   providers: [
 
@@ -136,6 +144,7 @@ import { NoteOneComponent } from './components/patient/note-one/note-one.compone
     DeleteNote,
     CreateNote,
     EditNote,
+    ProfileUpdateService,
     RegistrationService,
 
     // Interceptors
@@ -175,6 +184,7 @@ export class AppModule {
     private deleteNote: DeleteNote,
     private createNote: CreateNote,
     private editNote: EditNote,
+    private profileUpdateService: ProfileUpdateService,
     private registrationService: RegistrationService,
 
     // private paramsService: ParamsService,
